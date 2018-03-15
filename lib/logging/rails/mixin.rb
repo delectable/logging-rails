@@ -15,7 +15,7 @@ module Logging::Rails
     # This method is called when the module is included into a class. It will
     # extend the including class so it also has a class-level `logger` method.
     def self.included( other )
-      other.__send__(:remove_method, LOGGER_METHOD.to_sym) if other.instance_methods.include? LOGGER_METHOD
+      other.__send__(:undef_method, LOGGER_METHOD.to_sym) if other.instance_methods.include? LOGGER_METHOD
       other.extend self
     end
 
